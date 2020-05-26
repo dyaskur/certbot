@@ -75,9 +75,10 @@ These are the steps to build and install the snaps. If you have run these steps 
  4. Run `tools/strip_hashes.py letsencrypt-auto-source/pieces/dependency-requirements.txt > certbot-dns-dnsimple/constraints.txt`.
  5. `cd certbot-dns-dnsimple`
  6. `snapcraft --use-lxd`
- 7. Install the generated snap with `sudo snap install --dangerous certbot-dns-dnsimple_*_amd64.snap`. Again, you can transfer the snap to a different machine to run it there instead if you prefer.
- 8. Connect the plugin with `sudo snap connect certbot:plugin certbot-dns-dnsimple`.
- 9. Now you can run Certbot as normal. For example, `certbot plugins` should display the DNSimple plugin as installed.
+ 7. Run `sudo snap set certbot trust-plugin-with-root=ok`.
+ 8. Install the generated snap with `sudo snap install --dangerous certbot-dns-dnsimple_*_amd64.snap`. Again, you can transfer the snap to a different machine to run it there instead if you prefer.
+ 9. Connect the plugin with `sudo snap connect certbot:plugin certbot-dns-dnsimple`.
+ 10. Now you can run Certbot as normal. For example, `certbot plugins` should display the DNSimple plugin as installed.
 
 ### Reset the Environment
 

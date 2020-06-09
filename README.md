@@ -58,12 +58,14 @@ plugin snap) manually.
 These steps need to be done once to set up your VM and do not need to be run again to rebuild the snap.
 
  1. Start with a Xenial VM. You need a full virtual machine using something like DigitalOcean, EC2, or VirtualBox. Docker won't work. Another version of Ubuntu can probably be used, but Xenial was used when writing these instructions.
- 2. Install git and python with `sudo apt update && sudo apt install git python`.
- 3. Set up lxd for use with snapcraft by running `sudo snap install lxd && sudo /snap/bin/lxd.migrate -yes && sudo /snap/bin/lxd waitready && sudo /snap/bin/lxd init --auto`
- 4. Install snapcraft with `snap install --classic snapcraft`.
- 5. `cd ~` (or any other directory where you want our source files to be)
- 6. Run `git clone git://github.com/certbot/certbot -b snap-plugin`
- 7. `cd certbot`
+ 2. Set up a user other than root with sudo privileges for use with snapcraft and run all of the following commands with it. A command to do this for a user named certbot looks like `adduser certbot && usermod -aG sudo certbot && su - certbot`.
+ 3. Install git and python with `sudo apt update && sudo apt install git python`.
+ 4. Set up lxd for use with snapcraft by running `sudo snap install lxd && sudo /snap/bin/lxd.migrate -yes && sudo /snap/bin/lxd waitready && sudo /snap/bin/lxd init --auto`
+ 5. Add your current user to the lxd group and update your shell to have the new assignment by running `sudo usermod -a -G lxd ${USER} && newgrp lxd`.
+ 6. Install snapcraft with `sudo snap install --classic snapcraft`.
+ 7. `cd ~` (or any other directory where you want our source files to be)
+ 8. Run `git clone git://github.com/certbot/certbot -b snap-plugin`
+ 9. `cd certbot`
 
 ### Build the Snaps
 
